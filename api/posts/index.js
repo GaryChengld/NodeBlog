@@ -4,6 +4,7 @@ const postsController = require('./postsController')
 
 router.route('/').post(postsController.create);
 router.route('/:id')
-    .get(postsController.findById);
+    .get(postsController.findById)
+    .put(postsController.update);
 
 module.exports = router;
