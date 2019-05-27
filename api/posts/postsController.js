@@ -2,13 +2,9 @@ var postsService = require("./postsService");
 
 const findById = (req, res) => {
     postsService.findById(req.params.id)
-        .then(result => {
-            if (!result) {
-                res.status(404).json({ "message": "post not found" });
-            } else {
-                res.status(200).json(result);
-            }
-        })
+        .then(result =>
+            result ? res.status(200).json(result) : res.status(404).json({ "message": "post not found" })
+        )
         .catch(error => onError(error, res));
 };
 
