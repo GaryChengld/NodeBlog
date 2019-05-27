@@ -11,7 +11,7 @@ const findById = (req, res) => {
 const create = (req, res) => {
     postsService.create(req.body)
         .then(result => res.status(200).json(result))
-        .catch(error => onError(error, req));
+        .catch(error => onError(error, res));
 }
 
 const onError = (error, res) => {
