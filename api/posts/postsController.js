@@ -14,11 +14,19 @@ const create = (req, res) => {
         .catch(error => onError(error, res));
 }
 
+const update = (req, res) => {
+    postsService.update(req.params.id, req.body)
+        .then(result =>
+            result ? res.status(200).json(result) : res.status(404).json({ "message": "post not found" })
+        )
+        .catch(error => onError(error, res));
+}
+
 const onError = (error, res) => {
     console.log(error);
     res.status(500).json(error);
 }
 
 module.exports = {
-    findById, create
+    findById, create, update
 };
