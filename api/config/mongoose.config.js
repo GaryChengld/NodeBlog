@@ -1,19 +1,16 @@
 const mongoose = require('mongoose');
-const host = process.env.DB_HOST || 'localhost'
-const username = process.env.DB_USERNAME || 'admin';
-const password = process.env.DB_PASSWORD || 'manager';
-const database = process.env.DB_DATABASE || 'myDB';
-const authSource = process.env.DB_AUTO_SOURCE || 'admin';
+const config = require("./config.json");
 
-const dbURL = `mongodb://${username}:${password}@${host}/${database}`;
+const dbURL = `mongodb://${config.mongo.username}:${config.mongo.password}@${config.mongo.host}/${config.mongo.database}`;
 const connectOption = {
     useNewUrlParser: true,
     useCreateIndex: true,
-    auth: { authSource: `${authSource}` }
+    auth: { authSource: `${config.mongo.authSource}` }
 };
 const readLine = require('readline');
 
 const connect = () => {
+    console.log("dbURL:" + dbURL);
     setTimeout(() => mongoose.connect(dbURL, connectOption), 1000);
 }
 

@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const Post = mongoose.model('Post');
+
 const post = {
     title: 'theTitle',
     content: 'theContent'
@@ -5,9 +8,7 @@ const post = {
 
 const findById = (id) => {
     console.log("find post by id, id=" + id);
-    return new Promise(function (resolve, reject) {
-        resolve(post);
-    });
+    return Post.findById(id);
 };
 
 module.exports = {
