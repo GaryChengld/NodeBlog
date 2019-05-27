@@ -6,6 +6,11 @@ const findById = (id) => {
     return Post.findById(id);
 };
 
+const create = (post) => {
+    console.log(post);
+    return Post.create(post);
+}
+
 module.exports = {
-    findById
+    findById, create
 };
