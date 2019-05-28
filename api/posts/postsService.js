@@ -13,20 +13,14 @@ const create = (post) => {
 
 const update = (id, post) => {
     console.log("update post, post id=" + id);
-    return Post.findById(id)
-        .select('-comments')
-        .then(result => {            
-            if (result) {
-                result.author = post.author;
-                result.title = post.title;
-                result.body = post.body;
-                result.tags = post.tags;
-                result.updatedOn = new Date();
-                return result.save();
-            } else {
-                return Promise.resolve(null);
-            }
-        })
+    var data = {
+        author: post.author,
+        title: post.title,
+        body: post.body,
+        tags: post.tags,
+        updatedOn: new Date()
+    };
+    return Post.findByIdAndUpdate(id, { $set: data }, { new: true });
 }
 
 const remove = (id) => {
