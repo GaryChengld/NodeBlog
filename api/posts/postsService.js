@@ -6,6 +6,12 @@ const findById = (id) => {
     return Post.findById(id);
 };
 
+const findByAuthor = (author) => {
+    console.log("find post by author, author=" + author);
+    return Post.find({ author: author })
+        .select('id title tags');
+}
+
 const create = (post) => {
     console.log(post);
     return Post.create(post);
@@ -23,5 +29,5 @@ const remove = (id) => {
 }
 
 module.exports = {
-    findById, create, update, remove
+    findById, findByAuthor, create, update, remove
 };
