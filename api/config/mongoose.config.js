@@ -5,6 +5,7 @@ const dbURL = `mongodb://${config.mongo.username}:${config.mongo.password}@${con
 const connectOption = {
     useNewUrlParser: true,
     useCreateIndex: true,
+    useFindAndModify: false,
     auth: { authSource: `${config.mongo.authSource}` }
 };
 const readLine = require('readline');
