@@ -13,14 +13,8 @@ const create = (post) => {
 
 const update = (id, post) => {
     console.log("update post, post id=" + id);
-    var data = {
-        author: post.author,
-        title: post.title,
-        body: post.body,
-        tags: post.tags,
-        updatedOn: new Date()
-    };
-    return Post.findByIdAndUpdate(id, { $set: data }, { new: true });
+    console.log(post);
+    return Post.findByIdAndUpdate(id, { $set: { ...post, updatedOn: Date.now() } }, { new: true });
 }
 
 const remove = (id) => {
