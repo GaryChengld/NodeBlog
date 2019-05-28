@@ -7,5 +7,6 @@ router.route('/:id')
     .get(postsController.findById)
     .put(postsController.update)
     .delete(postsController.remove);
+router.route('/author/:author').get(postsController.findByAuthor);
 
 module.exports = router;
