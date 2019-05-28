@@ -12,7 +12,7 @@ const create = (req, res) => {
     postsService.create(req.body)
         .then(result => res.status(200).json(result))
         .catch(error => onError(error, res));
-}
+};
 
 const update = (req, res) => {
     postsService.update(req.params.id, req.body)
@@ -20,7 +20,15 @@ const update = (req, res) => {
             result ? res.status(200).json(result) : res.status(404).json({ "message": "post not found" })
         )
         .catch(error => onError(error, res));
-}
+};
+
+const remove = (req, res) => {
+    postsService.remove(req.params.id)
+        .then(result =>
+            result ? res.status(204).json(null) : res.status(404).json({ "message": "post not found" })
+        )
+        .catch(error => onError(error, res));
+};
 
 const onError = (error, res) => {
     console.log(error);
@@ -28,5 +36,5 @@ const onError = (error, res) => {
 }
 
 module.exports = {
-    findById, create, update
+    findById, create, update, remove
 };

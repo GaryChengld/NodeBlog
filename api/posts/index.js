@@ -5,6 +5,7 @@ const postsController = require('./postsController')
 router.route('/').post(postsController.create);
 router.route('/:id')
     .get(postsController.findById)
-    .put(postsController.update);
+    .put(postsController.update)
+    .delete(postsController.remove);
 
 module.exports = router;

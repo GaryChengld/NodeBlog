@@ -24,11 +24,16 @@ const update = (id, post) => {
                 result.updatedOn = new Date();
                 return result.save();
             } else {
-                return new Promise((resolve, reject) => resolve(null));
+                return Promise.resolve(null);
             }
         })
 }
 
+const remove = (id) => {
+    console.log("remove post, post id=" + id);
+    return Post.findByIdAndRemove(id);
+}
+
 module.exports = {
-    findById, create, update
+    findById, create, update, remove
 };
