@@ -10,9 +10,12 @@ const addReview = (postId, review) => {
 
 const doAddReview = (post, review) => {
     if (!post) {
-        throw postNotFoundError;
+        return Promise.reject(postNotFoundError);
     } else {
-
+        post.comments.push(review);
+        console.log(post);
+        return post.save()
+            .then(post => Promise.resolve(post.comments.pop()));
     }
 }
 
