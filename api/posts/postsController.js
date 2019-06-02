@@ -36,7 +36,7 @@ const notFound = (res) => {
 
 const onError = (error, res) => {
     console.log(error);
-    res.status(500).json(error);
+    res.status(error.status || 500).json(error);
 }
 
 module.exports = {
