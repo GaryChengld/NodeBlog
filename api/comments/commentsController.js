@@ -9,7 +9,7 @@ const addComment = (req, res) => {
 const findComment = (req, res) => {
     console.log(`postId=${req.params.postId}, commentId=${req.params.commentId}`);
     commentsService.getComment(req.params.postId, req.params.commentId)
-        .then(result => result ? res.status(200).json(result) : notFound(res))
+        .then(result => res.status(200).json(result))
         .catch(error => onError(error, res));
 }
 
@@ -21,4 +21,5 @@ const onError = (error, res) => {
 const notFound = (res) => {
     res.status(404).json({ "message": "comment not found" });
 }
+
 module.exports = { addComment, findComment };

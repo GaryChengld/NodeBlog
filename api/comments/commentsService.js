@@ -7,11 +7,14 @@ const addComment = (postId, comment) => {
         .then(post => doAddComment(post, comment));
 };
 
-const getComment = (postId, commentId) => {
-    console.log(`find comment, postId=${postId}, commentId=${commentId}`);
+const getComment = (postId, commentId) => {    
     return Post.findById(postId)
         .then(post => doGetComment(post, commentId));
 };
+
+const deleteComment = (postId, commentId) => {
+    return Post.findById(postId)
+}
 
 const doAddComment = (post, comment) => {
     if (!post) {
@@ -28,10 +31,17 @@ const doGetComment = (post, commentId) => {
     if (!post) {
         return Promise.reject(postNotFoundError);
     } else {
-        return Promise.resolve(post.comments.id(commentId));
+        const comment = post.comments.id(commentId);
+        if (!comment) {
+            return Promise.reject(commentNotFoundError);
+        } else {
+            return Promise.resolve(comment);
+        }        
     }
 };
 
 const postNotFoundError = { status: 404, message: 'post not found' };
+
+const commentNotFoundError = { status: 404, message: 'comment not found' };
 
 module.exports = { addComment, getComment };
