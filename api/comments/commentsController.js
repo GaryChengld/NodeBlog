@@ -13,6 +13,12 @@ const findComment = (req, res) => {
         .catch(error => onError(error, res));
 }
 
+const deleteComment = (req, res) => {
+    commentsService.deleteComment(req.params.postId, req.params.commentId)
+        .then(result => res.status(204).json(null))
+        .catch(error => onError(error, res));
+}
+
 const onError = (error, res) => {
     console.log(error);
     res.status(error.status || 500).json(error);
@@ -22,4 +28,4 @@ const notFound = (res) => {
     res.status(404).json({ "message": "comment not found" });
 }
 
-module.exports = { addComment, findComment };
+module.exports = { addComment, findComment, deleteComment };

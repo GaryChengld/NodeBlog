@@ -7,13 +7,14 @@ const addComment = (postId, comment) => {
         .then(post => doAddComment(post, comment));
 };
 
-const getComment = (postId, commentId) => {    
+const getComment = (postId, commentId) => {
     return Post.findById(postId)
         .then(post => doGetComment(post, commentId));
 };
 
 const deleteComment = (postId, commentId) => {
     return Post.findById(postId)
+        .then(post => doDeleteComment(post, commentId));
 }
 
 const doAddComment = (post, comment) => {
@@ -27,7 +28,7 @@ const doAddComment = (post, comment) => {
     }
 }
 
-const doGetComment = (post, commentId) => {   
+const doGetComment = (post, commentId) => {
     if (!post) {
         return Promise.reject(postNotFoundError);
     } else {
@@ -36,12 +37,25 @@ const doGetComment = (post, commentId) => {
             return Promise.reject(commentNotFoundError);
         } else {
             return Promise.resolve(comment);
-        }        
+        }
     }
 };
+
+const doDeleteComment = (post, commentId) => {
+    if (!post) {
+        return Promise.reject(postNotFoundError);
+    } else {
+        if (!post.comments.id(commentId)) {
+            return Promise.reject(commentNotFoundError);
+        } else {
+            post.comments.id(commentId).remove();
+            return post.save();
+        }
+    }
+}
 
 const postNotFoundError = { status: 404, message: 'post not found' };
 
 const commentNotFoundError = { status: 404, message: 'comment not found' };
 
-module.exports = { addComment, getComment };
+module.exports = { addComment, getComment, deleteComment };
