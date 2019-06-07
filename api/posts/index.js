@@ -8,5 +8,5 @@ router.route('/:id')
     .put(postsController.update)
     .delete(postsController.remove);
 router.route('/author/:author').get(postsController.findByAuthor);
-
+router.route('/latest/:limit').get(postsController.latestPosts);
 module.exports = router;

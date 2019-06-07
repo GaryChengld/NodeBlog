@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const Post = mongoose.model('Post');
 
+const latestPosts = (limit) => {
+    return Post.find().sort({ createdOn: "desc" })
+        .limit(parseInt(limit, 5))
+        .select('id title author createdOn tags');;
+}
+
 const findById = (id) => {
     console.log(`find post by id, id=${id}`);
     return Post.findById(id);
@@ -30,5 +36,5 @@ const remove = (id) => {
 }
 
 module.exports = {
-    findById, findByAuthor, create, update, remove
+    latestPosts, findById, findByAuthor, create, update, remove
 };

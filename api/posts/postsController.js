@@ -1,5 +1,11 @@
 var postsService = require("./postsService");
 
+const latestPosts = (req, res) => {
+    postsService.latestPosts(req.params.limit)
+        .then(results => res.status(200).json(results))
+        .catch(error => onError(error, res));
+}
+
 const findById = (req, res) => {
     postsService.findById(req.params.id)
         .then(result => result ? res.status(200).json(result) : notFound(res))
@@ -40,5 +46,5 @@ const onError = (error, res) => {
 }
 
 module.exports = {
-    findById, findByAuthor, create, update, remove
+    latestPosts, findById, findByAuthor, create, update, remove
 };
