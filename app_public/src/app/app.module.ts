@@ -6,18 +6,21 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostListComponent,
-    NavBarComponent
+    NavBarComponent,
+    PostDetailsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: PostListComponent },
+      { path: 'posts/:id', component: PostDetailsComponent}
     ])
   ],
   providers: [],
