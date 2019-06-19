@@ -1,3 +1,11 @@
-<p>
-  post-details works!
-</p>
+<div *ngIf="post">
+  <h3>{{ post.title }}</h3>
+
+  <p>
+    Author: {{ post.author }}<br>
+    Date: {{ post.createdOn | date }}
+  </p>
+  <p>
+    {{ post.body }}
+  </p>
+</div>
