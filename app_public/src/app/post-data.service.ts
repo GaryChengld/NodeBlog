@@ -21,13 +21,12 @@ export class PostDataService {
       .catch(this.handleError);
   }
 
-  public getPostById(id: string): Promise<Post> {
+  public getPostById(id: string): Promise<any> {
     console.log(`get post by id, post id:${id}`);
     const url: string = `${this.apiBaseUrl}/posts/${id}`;
     return this.http
       .get(url)
-      .toPromise()
-      .then(response => response as Post)
+      .toPromise()      
       .catch(this.handleError);
   }
 
