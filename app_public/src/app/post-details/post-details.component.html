@@ -23,13 +23,20 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-12">    
+  <div class="col-12">
     <div class="comments">
-      <h5>Comments</h5>
-      <button (click)="formVisible=true" class="btn btn-primary">Add review</button>
-      <div *ngFor="let comment of post.comments">
-        <div class="u-paddingBottom3">{{ comment.author }} - {{ comment.createdOn | date }}</div>
-        <p>{{ comment.comment }}</p>
+      <div>
+        <button (click)="formVisible=true" class="btn btn-primary float-right">Add review</button>
+        <h5>Comments</h5>
+      </div>
+      <div *ngFor="let comment of post.comments" class="row">
+        <div class="col-12">
+          <span>{{ comment.author }}</span>
+          <small>{{ comment.createdOn | date }}</small>
+        </div>
+        <div class="col-12">
+          <p>{{ comment.comment }}</p>
+        </div>
       </div>
     </div>
   </div>
