@@ -1,22 +1,36 @@
-<div class="post" *ngIf="post">
-  <h4>{{ post.title }}</h4>
+<div class="row">
+  <div class="col-12">
+    <div class="post" *ngIf="post">
+      <h4>{{ post.title }}</h4>
 
-  <p>
-    Author: {{ post.author }}<br>
-    Date: {{ post.createdOn | date }}
-  </p>
-  <p>
-    {{ post.body }}
-  </p>
-  <div class="tags">
-    <span *ngFor="let tag of post.tags" class="badge badge-warning">{{tag}}</span>
+      <p>
+        Author: {{ post.author }}<br>
+        Date: {{ post.createdOn | date }}
+      </p>
+      <p>
+        {{ post.body }}
+      </p>
+      <div class="tags">
+        <span *ngFor="let tag of post.tags" class="badge badge-warning">
+          {{tag}}
+        </span>
+      </div>
+    </div>
   </div>
-  <br>
-  <div class="comments">
-    <h5>Comments</h5>
-    <div *ngFor="let comment of comments">
-      <div class="u-paddingBottom3">{{ comment.author }} - {{ comment.createdOn | date }}</div>
-      <p>{{ comment.comment }}</p>
+</div>
+<div class="row">
+  <div class="col-md-12 bs-linebreak">
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">    
+    <div class="comments">
+      <h5>Comments</h5>
+      <button (click)="formVisible=true" class="btn btn-primary">Add review</button>
+      <div *ngFor="let comment of post.comments">
+        <div class="u-paddingBottom3">{{ comment.author }} - {{ comment.createdOn | date }}</div>
+        <p>{{ comment.comment }}</p>
+      </div>
     </div>
   </div>
 </div>

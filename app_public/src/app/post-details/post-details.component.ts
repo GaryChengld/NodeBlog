@@ -10,7 +10,6 @@ import { PostDataService } from '../post-data.service'
 })
 export class PostDetailsComponent implements OnInit {
   post;
-  comments: Array<any>;
 
   constructor(private route: ActivatedRoute, private postDataService: PostDataService) { }
 
@@ -21,8 +20,7 @@ export class PostDetailsComponent implements OnInit {
         .then(post => {
           console.log(post);
           this.post = post;
-          this.comments = post.comments;
-          
+          this.post.comments.sort((a, b) => a.createdOn > b.createdOn ? -1 : a.createdOn < b.createdOn ? 1 : 0);
         });
     });
   }
