@@ -1,6 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Post } from './post.model'
+import { Post } from './post.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,10 +26,18 @@ export class PostDataService {
     const url: string = `${this.apiBaseUrl}/posts/${id}`;
     return this.http
       .get(url)
-      .toPromise()      
+      .toPromise()
       .catch(this.handleError);
   }
 
+
+  public addComment(id: string, formBody: any) {
+    const url: string = `${this.apiBaseUrl}/comments/${id}`;
+    return this.http
+      .post(url, formBody)
+      .toPromise()
+      .catch(this.handleError);
+  }
 
   private handleError(error: any): Promise<any> {
     console.error('Something has gone wrong', error);

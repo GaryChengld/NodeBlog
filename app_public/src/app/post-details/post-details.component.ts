@@ -10,6 +10,14 @@ import { PostDataService } from '../post-data.service'
 })
 export class PostDetailsComponent implements OnInit {
   post;
+  public newComment = {
+    author: '',
+    createdOn: Date.now(),
+    comment: ''
+  };
+
+  public formVisible: boolean = false;
+  public errorMessage: string;
 
   constructor(private route: ActivatedRoute, private postDataService: PostDataService) { }
 
@@ -25,4 +33,34 @@ export class PostDetailsComponent implements OnInit {
     });
   }
 
+  public onCommentSubmit(): void {
+    this.errorMessage = '';
+    if (this.formIsValid()) {
+      this.newComment.createdOn = Date.now();
+      this.postDataService.addComment(this.post._id, this.newComment)
+        .then((comment: any) => {
+          let comments = this.post.comments.slice(0);
+          comments.unshift(comment);
+          this.post.comments = comments;
+          this.resetAndHideReviewForm();
+        });
+    } else {
+      this.errorMessage = 'All fields requried, please try again';
+    }
+  }
+
+  private formIsValid(): boolean {
+    if (this.newComment.author && this.newComment.comment) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private resetAndHideReviewForm(): void {
+    this.formVisible = false;
+    this.newComment.author = '';
+    this.newComment.createdOn = Date.now();
+    this.newComment.comment = '';
+  }
 }
