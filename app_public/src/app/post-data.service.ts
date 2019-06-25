@@ -31,7 +31,7 @@ export class PostDataService {
   }
 
 
-  public addComment(id: string, formBody: any) {
+  public addComment(id: string, formBody){
     const url: string = `${this.apiBaseUrl}/comments/${id}`;
     return this.http
       .post(url, formBody)

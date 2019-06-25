@@ -39,6 +39,7 @@ export class PostDetailsComponent implements OnInit {
       this.newComment.createdOn = Date.now();
       this.postDataService.addComment(this.post._id, this.newComment)
         .then((comment: any) => {
+          console.log(comment);
           let comments = this.post.comments.slice(0);
           comments.unshift(comment);
           this.post.comments = comments;
