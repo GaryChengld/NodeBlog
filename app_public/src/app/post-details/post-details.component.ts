@@ -49,6 +49,10 @@ export class PostDetailsComponent implements OnInit {
     }
   }
 
+  public showForm(): void {
+    this.formVisible = true;
+  }
+
   private formIsValid(): boolean {
     if (this.newComment.author && this.newComment.comment) {
       return true;
