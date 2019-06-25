@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { PostDataService } from '../post-data.service'
@@ -15,6 +15,8 @@ export class PostDetailsComponent implements OnInit {
     createdOn: Date.now(),
     comment: ''
   };
+
+  @ViewChild("name", { static: false }) nameField: ElementRef;
 
   public formVisible: boolean = false;
   public errorMessage: string;
@@ -33,7 +35,7 @@ export class PostDetailsComponent implements OnInit {
     });
   }
 
-  public onCommentSubmit(): void {
+  onCommentSubmit(): void {
     this.errorMessage = '';
     if (this.formIsValid()) {
       this.newComment.createdOn = Date.now();
@@ -50,8 +52,9 @@ export class PostDetailsComponent implements OnInit {
     }
   }
 
-  public showForm(): void {
+  showForm(): void {
     this.formVisible = true;
+    this.nameField.nativeElement.focus();
   }
 
   private formIsValid(): boolean {
