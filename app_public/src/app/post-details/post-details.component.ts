@@ -16,8 +16,6 @@ export class PostDetailsComponent implements OnInit {
     comment: ''
   };
 
-  @ViewChild("name", { static: false }) nameField: ElementRef;
-
   public formVisible: boolean = false;
   public errorMessage: string;
 
@@ -54,7 +52,6 @@ export class PostDetailsComponent implements OnInit {
 
   showForm(): void {
     this.formVisible = true;
-    this.nameField.nativeElement.focus();
   }
 
   private formIsValid(): boolean {
@@ -66,6 +63,7 @@ export class PostDetailsComponent implements OnInit {
   }
 
   private resetAndHideReviewForm(): void {
+    this.errorMessage = '';
     this.formVisible = false;
     this.newComment.author = '';
     this.newComment.createdOn = Date.now();

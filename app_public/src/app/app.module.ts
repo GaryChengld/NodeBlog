@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { AutoFocusDirective } from './auto-focus.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostListComponent,
     NavBarComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    AutoFocusDirective
   ],
   imports: [
     BrowserModule,
