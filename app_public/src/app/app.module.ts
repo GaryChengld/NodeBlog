@@ -9,6 +9,7 @@ import { PostListComponent } from './post-list/post-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { AutoFocusDirective } from './auto-focus.directive';
+import { HtmlLineBreaksPipe } from './html-line-breaks.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AutoFocusDirective } from './auto-focus.directive';
     PostListComponent,
     NavBarComponent,
     PostDetailsComponent,
-    AutoFocusDirective
+    AutoFocusDirective,
+    HtmlLineBreaksPipe
   ],
   imports: [
     BrowserModule,
