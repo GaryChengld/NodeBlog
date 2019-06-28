@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { PostDataService } from '../post-data.service'
@@ -53,6 +53,7 @@ export class PostDetailsComponent implements OnInit {
   showForm(): void {
     this.formVisible = true;
   }
+
 
   private formIsValid(): boolean {
     if (this.newComment.author && this.newComment.comment) {

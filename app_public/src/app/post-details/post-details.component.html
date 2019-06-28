@@ -1,16 +1,20 @@
 <div class="post" *ngIf="post">
   <div class="row">
     <div class="col-12">
-      <h4>{{ post.title }}</h4>
-      <p>
-        Author: {{ post.author }}<br>
-        Date: {{ post.createdOn | date }}
-      </p>
-      <p [innerHTML]="post.body | htmlLineBreaks"></p>     
-      <div class="tags">
-        <span *ngFor="let tag of post.tags" class="badge badge-warning">
-          {{tag}}
-        </span>
+      <div class="post-detail">
+        <button *ngIf="!formVisible" [routerLink]="['/posts/modify', post._id]"
+          class="btn btn-primary float-right">Modify Post</button>
+        <h5>{{ post.title }}</h5>
+        <p>
+          Author: {{ post.author }}<br>
+          Date: {{ post.createdOn | date }}
+        </p>
+        <p [innerHTML]="post.body | htmlLineBreaks"></p>
+        <div class="tags">
+          <span *ngFor="let tag of post.tags" class="badge badge-warning">
+            {{tag}}
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -63,8 +67,7 @@
   </div>
   <div *ngFor="let comment of post.comments" class="row">
     <div class="col-12">
-      <span>{{ comment.author }}</span>
-      - <small>{{ comment.createdOn | date }}</small>
+      <span>{{ comment.author }}</span> - <small>{{ comment.createdOn | date }}</small>
     </div>
     <div class="col-12">
       <p [innerHTML]="comment.comment | htmlLineBreaks"></p>
