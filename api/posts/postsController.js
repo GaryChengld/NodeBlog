@@ -41,7 +41,7 @@ const notFound = (res) => {
 }
 
 const onError = (error, res) => {
-    console.log(error);
+    console.log(error.message);
     res.status(error.status || 500).json(error);
 }
 

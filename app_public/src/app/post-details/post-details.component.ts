@@ -29,6 +29,9 @@ export class PostDetailsComponent implements OnInit {
           console.log(post);
           this.post = post;
           this.post.comments.sort((a, b) => a.createdOn > b.createdOn ? -1 : a.createdOn < b.createdOn ? 1 : 0);
+        })
+        .catch(error => {
+          this.errorMessage = error;
         });
     });
   }

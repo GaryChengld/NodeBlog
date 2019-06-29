@@ -40,8 +40,8 @@ export class PostDataService {
       .catch(this.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('Something has gone wrong', error);
-    return Promise.reject(error.message || error);
+  private handleError(errorResponse: any): Promise<any> {
+    console.error('Something has gone wrong', errorResponse);
+    return Promise.reject(errorResponse.error.message ? errorResponse.error.message : errorResponse.message);
   }
 }
