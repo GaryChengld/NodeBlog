@@ -12,6 +12,7 @@ import { AutoFocusDirective } from './auto-focus.directive';
 import { HtmlLineBreaksPipe } from './html-line-breaks.pipe';
 import { ModifyPostComponent } from './modify-post/modify-post.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { InputPostComponent } from './input-post/input-post.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     AutoFocusDirective,
     HtmlLineBreaksPipe,
     ModifyPostComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    InputPostComponent
   ],
   imports: [
     BrowserModule,

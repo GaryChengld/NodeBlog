@@ -1,3 +1,2 @@
-<p>
-  modify-post works!
-</p>
+<app-error-page *ngIf="!post" [errorMessage]="errorMessage"></app-error-page>
+<app-input-post *ngIf="post" [post]="post"></app-input-post>
