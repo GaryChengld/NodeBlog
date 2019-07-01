@@ -13,6 +13,7 @@ import { HtmlLineBreaksPipe } from './html-line-breaks.pipe';
 import { ModifyPostComponent } from './modify-post/modify-post.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { InputPostComponent } from './input-post/input-post.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { InputPostComponent } from './input-post/input-post.component';
     HtmlLineBreaksPipe,
     ModifyPostComponent,
     ErrorPageComponent,
-    InputPostComponent
+    InputPostComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,

@@ -49,7 +49,7 @@ export class InputPostComponent implements OnInit {
     if (this.post._id) {
       this.router.navigate(['/posts', this.post._id]);
     } else {
-      this.router.navigate(['/posts']);
+      this.router.navigate(['/']);
     }
   }
 
