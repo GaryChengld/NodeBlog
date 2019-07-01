@@ -31,8 +31,25 @@ export class PostDataService {
       .catch(this.handleError);
   }
 
+  public upodatePost(post: Post) {
+    console.log(`update post ${post}`);
+    const url: string = `${this.apiBaseUrl}/posts/${post._id}`;
+    return this.http
+      .put(url, post)
+      .toPromise()
+      .catch(this.handleError);
+  }
 
-  public addComment(id: string, formBody){
+  public addPost(post: Post) {
+    console.log(`update post ${post}`);
+    const url: string = `${this.apiBaseUrl}/posts/`;
+    return this.http
+      .post(url, post)
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  public addComment(id: string, formBody) {
     const url: string = `${this.apiBaseUrl}/comments/${id}`;
     return this.http
       .post(url, formBody)
