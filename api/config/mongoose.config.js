@@ -64,3 +64,4 @@ process.on('SIGTERM', () => {
 connect();
 
 require("../posts/post.schema");
+require("../users/users.schema");
