@@ -1,4 +1,4 @@
-require('dotenv').load();
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -7,6 +7,7 @@ const logger = require('morgan');
 const passport = require('passport');
 
 require("./api/config/config")
+require('./api/config/passport');
 
 var app = express();
 
@@ -20,9 +21,8 @@ app.use(passport.initialize());
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
 
