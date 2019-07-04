@@ -4,11 +4,8 @@ const User = mongoose.model('User');
 
 const register = (req, res) => {
     if (!req.body.name || !req.body.email || !req.body.password) {
-        return res
-            .status(400)
-            .json({ "message": "All fields required" });
+        return errorResponse(res, 400, "All fields required");
     }
-
     const user = new User();
     user.name = req.body.name;
     user.email = req.body.email;
@@ -23,15 +20,36 @@ const register = (req, res) => {
     })
 };
 
+const login = (req, res) => {
+    if (!req.body.email || !req.body.password) {
+        return errorResponse(res, 400, "All fields required");
+    }
+    passport.authenticate('local', (err, user, info) => {
+        if (err) {
+            return onError(err, res);
+        }
+        if (user) {
+            const token = user.generateJwt();
+            res.status(200).json({ token });
+        } else {
+            res.status(401).json(info);
+        }
+    })(req, res);
+}
+
 const onError = (error, res) => {
     console.log(error.message);
     if (error.code == 11000) {
-        res.status(403).json({ "message": 'User already registered' });
+        errorResponse(res, 403, 'User already registered');
     } else if (error.message) {
-        res.status(error.status || 500).json({ "message": error.message });
+        errorResponse(res, error.status || 500, error.message);
     } else {
         res.status(error.status || 500).json(error);
     }
 }
 
-module.exports = { register };
+const errorResponse = (res, status, message) => {
+    res.status(status).json({ "message": message });
+}
+
+module.exports = { register, login };
