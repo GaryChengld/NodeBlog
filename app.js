@@ -26,8 +26,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-require('./api/routes')(app);
-
+// Routers
+require('./api/routes').forEach(router => app.use(router.path, router.handler));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
