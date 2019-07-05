@@ -1,11 +1,6 @@
-const postsRouter = require('./posts/index');
-const commentsRouter = require('./comments/index');
-const usersRouter = require('./users/index');
+var routers = [];
+routers.push({ url: '/api/posts', router: require('./posts/index') });
+routers.push({ url: '/api/comments', router: require('./comments/index') });
+routers.push({ url: '/api/users', router: require('./users/index') });
 
-const router = (app) => {
-    app.use('/api/posts', postsRouter);
-    app.use('/api/comments', commentsRouter);
-    app.use('/api/users', usersRouter);
-};
-
-module.exports = router;
+module.exports = routers;
