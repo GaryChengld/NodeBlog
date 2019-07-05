@@ -1,6 +1,6 @@
 var routers = [];
-routers.push({ url: '/api/posts', router: require('./posts/index') });
-routers.push({ url: '/api/comments', router: require('./comments/index') });
-routers.push({ url: '/api/users', router: require('./users/index') });
+routers.push({ path: '/api/posts', handler: require('./posts/index') });
+routers.push({ path: '/api/comments', handler: require('./comments/index') });
+routers.push({ path: '/api/users', handler: require('./users/index') });
 
 module.exports = routers;
