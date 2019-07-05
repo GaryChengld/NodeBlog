@@ -61,17 +61,19 @@
                 class="btn btn-danger float-right">Cancel</button>
             </div>
           </div>
-          <hr>
         </form>
       </div>
     </div>
   </div>
   <div *ngFor="let comment of post.comments" class="row">
     <div class="col-12">
-      <span>{{ comment.author }}</span> - <small>{{ comment.createdOn | date }}</small>
-    </div>
-    <div class="col-12">
-      <p [innerHTML]="comment.comment | htmlLineBreaks"></p>
+      <hr>
+      <div class="col-12">
+        <span>{{ comment.author }}</span> - <small>{{ comment.createdOn | date }}</small>
+      </div>
+      <div class="col-12">
+        <p [innerHTML]="comment.comment | htmlLineBreaks"></p>
+      </div>
     </div>
   </div>
 </div>
