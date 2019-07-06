@@ -34,7 +34,7 @@ userSchema.methods.generateJwt = function () {
         email: this.email,
         name: this.name,
         exp: parseInt(expiry.getTime() / 1000, 10),
-    }, process.env.JWT_SECRET || "secret");
+    }, process.env.JWT_SECRET);
 };
 
 const createHash = (password, salt) => {

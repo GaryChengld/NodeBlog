@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
-const config = require("./config.json");
 
-const dbURL = `mongodb://${config.mongo.username}:${config.mongo.password}@${config.mongo.host}/${config.mongo.database}`;
+const dbURL = process.env.DB_URL;
 const connectOption = {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    auth: { authSource: `${config.mongo.authSource}` }
+    auth: { authSource: process.env.DB_AUTH_SOURCE }
 };
 const readLine = require('readline');
 

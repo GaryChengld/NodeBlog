@@ -7,8 +7,6 @@ const logger = require('morgan');
 const passport = require('passport');
 
 require("./api/config/config")
-require('./api/config/passport');
-
 var app = express();
 
 app.use(logger('dev'));
