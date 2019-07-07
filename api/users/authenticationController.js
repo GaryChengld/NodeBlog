@@ -1,23 +1,17 @@
 const passport = require('passport');
-const mongoose = require('mongoose');
-const User = mongoose.model('User');
+const jwtService = require('../common/jwtService')
+const usersService = require('./usersService');
 
 const register = (req, res) => {
     if (!req.body.name || !req.body.email || !req.body.password) {
         return errorResponse(res, 400, "All fields required");
     }
-    const user = new User();
-    user.name = req.body.name;
-    user.email = req.body.email;
-    user.setPassword(req.body.password);
-    user.save((err) => {
-        if (err) {
-            onError(err, res);
-        } else {
-            const token = user.generateJwt();
+    usersService.createUser(req.body)
+        .then((user) => {
+            const token = jwtService.generateToken(user);
             res.status(200).json({ token });
-        }
-    })
+        })
+        .catch((err) => onError(err, res));
 };
 
 const login = (req, res) => {
@@ -29,7 +23,7 @@ const login = (req, res) => {
             return onError(err, res);
         }
         if (user) {
-            const token = user.generateJwt();
+            const token = jwtService.generateToken(user);
             res.status(200).json({ token });
         } else {
             res.status(401).json(info);
