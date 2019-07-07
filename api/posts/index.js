@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const postsController = require('./postsController')
-const auth = require('../common/jwtService').auth;
+const auth = require('../common/authService').auth;
 
 router.route('/').post(auth, postsController.create);
 router.route('/:id')

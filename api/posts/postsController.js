@@ -19,6 +19,7 @@ const findByAuthor = (req, res) => {
 }
 
 const create = (req, res) => {
+    console.log(req.payload);
     postsService.create(req.body)
         .then(result => res.status(200).json(result))
         .catch(error => onError(error, res));

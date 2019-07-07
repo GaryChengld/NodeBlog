@@ -1,5 +1,5 @@
 const passport = require('passport');
-const jwtService = require('../common/jwtService')
+const jwtService = require('../common/authService')
 const usersService = require('./usersService');
 
 const register = (req, res) => {
