@@ -29,7 +29,7 @@ const login = (req, res) => {
             res.status(401).json(info);
         }
     })(req, res);
-}
+};
 
 const onError = (error, res) => {
     console.log(error.message);
@@ -40,10 +40,10 @@ const onError = (error, res) => {
     } else {
         res.status(error.status || 500).json(error);
     }
-}
+};
 
 const errorResponse = (res, status, message) => {
     res.status(status).json({ "message": message });
-}
+};
 
 module.exports = { register, login };

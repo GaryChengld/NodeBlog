@@ -15,7 +15,7 @@ const createUser = (userData) => {
     user.setPassword(userData.password);
     console.log(user);
     return User.create(user);
-}
+};
 
 const authUser = (username, password) => {
     return findUser(username)
@@ -29,14 +29,14 @@ const authUser = (username, password) => {
                 return user;
             }
         });
-}
+};
 
 const onError = (message) => {
     throw {
         status: 401,
         message: message
     };
-}
+};
 
 module.exports = {
     findUser, createUser, authUser

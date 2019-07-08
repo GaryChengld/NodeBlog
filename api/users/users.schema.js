@@ -28,6 +28,6 @@ userSchema.methods.validPassword = function (password) {
 const createHash = (password, salt) => {
     return crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512')
         .toString('hex');
-}
+};
 
 mongoose.model('User', userSchema);

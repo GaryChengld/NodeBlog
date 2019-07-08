@@ -16,7 +16,7 @@ const findByAuthor = (req, res) => {
     postsService.findByAuthor(req.params.author)
         .then(results => res.status(200).json(results))
         .catch(error => onError(error, res));
-}
+};
 
 const create = (req, res) => {
     console.log(req.payload);
@@ -39,12 +39,12 @@ const remove = (req, res) => {
 
 const notFound = (res) => {
     res.status(404).json({ "message": "post not found" });
-}
+};
 
 const onError = (error, res) => {
     console.log(error.message);
     res.status(error.status || 500).json(error);
-}
+};
 
 module.exports = {
     latestPosts, findById, findByAuthor, create, update, remove
