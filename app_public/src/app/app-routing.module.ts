@@ -6,13 +6,15 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { ModifyPostComponent } from './modify-post/modify-post.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { NewPostComponent } from './new-post/new-post.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
     { path: '', component: PostListComponent },
     { path: 'posts/:id', component: PostDetailsComponent },
     { path: 'posts/modify/:id', component: ModifyPostComponent },
     { path: 'error', component: ErrorPageComponent },
-    { path: 'newpost', component: NewPostComponent }
+    { path: 'newpost', component: NewPostComponent },
+    { path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({

@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from './post.model';
 import { environment } from '../environments/environment';
+import { User } from './user';
+import { AuthResponse } from './authresponse';
 
 @Injectable({
   providedIn: 'root'
@@ -57,8 +59,25 @@ export class PostDataService {
       .catch(this.handleError);
   }
 
+  public login(user: User): Promise<AuthResponse> {
+    return this.makeAuthApiCall('users/login', user);
+  }
+
+  public register(user: User): Promise<AuthResponse> {
+    return this.makeAuthApiCall('users/register', user);
+  }
+
+  private makeAuthApiCall(urlPath: string, user: User): Promise<AuthResponse> {
+    const url: string = `${this.apiBaseUrl}/${urlPath}`;
+    return this.http
+      .post(url, user)
+      .toPromise()
+      .then(response => response as AuthResponse)
+      .catch(this.handleError);
+  }
+
   private handleError(errorResponse: any): Promise<any> {
     console.error('Something has gone wrong', errorResponse);
-    return Promise.reject(errorResponse.error.message ? errorResponse.error.message : errorResponse.message);
+    return Promise.reject(errorResponse.error.message || errorResponse.message || errorResponse);
   }
 }
