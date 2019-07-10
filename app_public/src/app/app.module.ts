@@ -15,6 +15,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { InputPostComponent } from './input-post/input-post.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { PageHeaderComponent } from './page-header/page-header.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { RegisterComponent } from './register/register.component';
     ErrorPageComponent,
     InputPostComponent,
     NewPostComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent,
+    PageHeaderComponent
   ],
   imports: [
     BrowserModule,

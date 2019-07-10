@@ -5,6 +5,11 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div id="navbarMain" class="navbar-collapse collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" *ngIf="isLoggedIn()">
+          <a routerLink="newpost" routerLinkActive="active" class="nav-link">New Post</a>
+        </li>
+      </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active" routerLinkActive="active">
           <a routerLink="login" class="nav-link" *ngIf="!isLoggedIn()">Sign in</a>
