@@ -18,6 +18,8 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 
+import { AuthenticationService } from './authentication.service';
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,16 +1,19 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from './post.model';
 import { environment } from '../environments/environment';
 import { User } from './user';
 import { AuthResponse } from './authresponse';
+import { BROWSER_STORAGE } from './storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostDataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(BROWSER_STORAGE) private storage: Storage) { }
 
   private apiBaseUrl = environment.apiBaseUrl;
 
@@ -54,7 +57,7 @@ export class PostDataService {
   public addComment(id: string, formBody) {
     const url: string = `${this.apiBaseUrl}/comments/${id}`;
     return this.http
-      .post(url, formBody)
+      .post(url, formBody, this.authHttpOptions())
       .toPromise()
       .catch(this.handleError);
   }
@@ -74,6 +77,13 @@ export class PostDataService {
       .toPromise()
       .then(response => response as AuthResponse)
       .catch(this.handleError);
+  }
+
+  private authHttpOptions(): any {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.storage.getItem('nblog-token')}`
+    });
+    return { headers: headers };
   }
 
   private handleError(errorResponse: any): Promise<any> {

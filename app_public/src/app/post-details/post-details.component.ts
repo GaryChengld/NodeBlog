@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { PostDataService } from '../post-data.service'
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-post-details',
@@ -19,7 +20,11 @@ export class PostDetailsComponent implements OnInit {
   public formVisible: boolean = false;
   public errorMessage: string;
 
-  constructor(private route: ActivatedRoute, private postDataService: PostDataService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private postDataService: PostDataService,
+    private authenticationService: AuthenticationService
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -38,6 +43,7 @@ export class PostDetailsComponent implements OnInit {
 
   onCommentSubmit(): void {
     this.errorMessage = '';
+    this.newComment.author = this.authenticationService.getCurrentUser().name;
     if (this.formIsValid()) {
       this.newComment.createdOn = Date.now();
       this.postDataService.addComment(this.post._id, this.newComment)
