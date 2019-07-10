@@ -1,10 +1,10 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from './post.model';
 import { environment } from '../environments/environment';
 import { User } from './user';
 import { AuthResponse } from './authresponse';
-import { BROWSER_STORAGE } from './storage';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class PostDataService {
 
   constructor(
     private http: HttpClient,
-    @Inject(BROWSER_STORAGE) private storage: Storage) { }
+    private storageService: StorageService) { }
 
   private apiBaseUrl = environment.apiBaseUrl;
 
@@ -40,7 +40,7 @@ export class PostDataService {
     console.log(`update post ${post}`);
     const url: string = `${this.apiBaseUrl}/posts/${post._id}`;
     return this.http
-      .put(url, post)
+      .put(url, post, this.authHttpOptions())
       .toPromise()
       .catch(this.handleError);
   }
@@ -49,7 +49,7 @@ export class PostDataService {
     console.log(`update post ${post}`);
     const url: string = `${this.apiBaseUrl}/posts/`;
     return this.http
-      .post(url, post)
+      .post(url, post, this.authHttpOptions())
       .toPromise()
       .catch(this.handleError);
   }
@@ -81,7 +81,7 @@ export class PostDataService {
 
   private authHttpOptions(): any {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.storage.getItem('nblog-token')}`
+      'Authorization': `Bearer ${this.storageService.removeToken()}`
     });
     return { headers: headers };
   }
