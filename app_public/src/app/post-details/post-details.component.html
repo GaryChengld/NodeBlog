@@ -11,10 +11,10 @@
           Date: {{ post.createdOn | date }}
         </p>
         <p [innerHTML]="post.body | htmlLineBreaks"></p>
-        <div class="tags">
-          <span *ngFor="let tag of post.tags" class="badge badge-warning">
+        <div>
+          <span *ngFor="let tag of post.tags" class="badge badge-pill badge-success">
             {{tag}}
-          </span>
+          </span>          
         </div>
       </div>
     </div>
