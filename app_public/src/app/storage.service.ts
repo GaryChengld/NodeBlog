@@ -9,7 +9,7 @@ export class StorageService {
 
   constructor(@Inject(BROWSER_STORAGE) private storage: Storage) { }
 
-  public getToken(): string {
+  public getToken(): string {    
     return this.storage.getItem(StorageService.ITEM_NAME);
   }
 

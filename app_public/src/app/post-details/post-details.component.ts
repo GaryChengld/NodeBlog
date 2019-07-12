@@ -53,7 +53,8 @@ export class PostDetailsComponent implements OnInit {
           comments.unshift(comment);
           this.post.comments = comments;
           this.resetAndHideReviewForm();
-        });
+        })
+        .catch((err) => this.errorMessage = err);
     } else {
       this.errorMessage = 'All fields requried, please try again';
     }

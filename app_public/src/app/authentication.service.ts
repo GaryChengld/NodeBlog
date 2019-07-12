@@ -43,6 +43,8 @@ export class AuthenticationService {
       const token: string = this.storageService.getToken();
       const { email, name } = JSON.parse(atob(token.split('.')[1]));
       return { email, name } as User;
+    } else {
+      return {name: "Guest"} as User;
     }
   }
 }

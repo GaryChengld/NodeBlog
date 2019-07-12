@@ -81,7 +81,7 @@ export class PostDataService {
 
   private authHttpOptions(): any {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.storageService.removeToken()}`
+      'Authorization': `Bearer ${this.storageService.getToken()}`
     });
     return { headers: headers };
   }

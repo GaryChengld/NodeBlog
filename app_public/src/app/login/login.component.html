@@ -1,20 +1,24 @@
-<app-page-header [content]="pageContent.header"></app-page-header>
 <div class="row">
-  <div class="col-md-6 offset-md-3 border border-primary">    
-    <form (ngSubmit)="onLoginSubmit(evt)">
-      <div role="alert" *ngIf="formError" class="alert alert-danger">{{ formError }}</div>
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address"
-          [(ngModel)]="credentials.email">
+  <div class="col-md-6 offset-md-3 p-3">
+    <div class="card">
+      <div class="card-header bg-primary text-white">{{ pageContent.header.title }}</div>
+      <div class="card-body">
+        <form (ngSubmit)="onLoginSubmit(evt)">
+          <div role="alert" *ngIf="formError" class="alert alert-danger">{{ formError }}</div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address"
+              [(ngModel)]="credentials.email">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"
+              [(ngModel)]="credentials.password">
+          </div>
+          <p class="small">Not a member? Please <a routerLink="/register">register</a> first</p>
+          <button type="submit" role="button" class="btn btn-primary float-right">Sign In!</button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"
-          [(ngModel)]="credentials.password">
-      </div>
-      <button type="submit" role="button" class="btn btn-primary float-right">Sign In!</button>
-    </form>
-    <p class="small">Not a member? Please <a routerLink="/register">register</a> first</p>
+    </div>
   </div>
 </div>
