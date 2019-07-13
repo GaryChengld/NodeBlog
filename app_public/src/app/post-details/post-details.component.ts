@@ -64,6 +64,15 @@ export class PostDetailsComponent implements OnInit {
     this.formVisible = true;
   }
 
+  isModifyButtonVisible(): boolean {
+    return this.authenticationService.isLoggedIn()
+      && this.post.author == this.authenticationService.getCurrentUser()
+      && !this.formVisible;
+  }
+
+  isAddCommentButtonVisible(): boolean {
+    return this.authenticationService.isLoggedIn() && !this.formVisible;
+  }
 
   private formIsValid(): boolean {
     if (this.newComment.author && this.newComment.comment) {

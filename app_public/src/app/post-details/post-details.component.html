@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-12">
       <div class="post-detail">
-        <button *ngIf="!formVisible" [routerLink]="['/posts/modify', post._id]"
+        <button *ngIf="isModifyButtonVisible()" [routerLink]="['/posts/modify', post._id]"
           class="btn btn-primary float-right">Modify Post</button>
         <h5>{{ post.title }}</h5>
         <p>
@@ -26,7 +26,7 @@
   <div class="row">
     <div class="col-12">
       <div class="comments">
-        <button *ngIf="!formVisible" (click)="showForm()" class="btn btn-primary float-right">Add review</button>
+        <button *ngIf="isAddCommentButtonVisible()" (click)="showForm()" class="btn btn-primary float-right">Add Comment</button>
         <h5>Comments</h5>
       </div>
     </div>
