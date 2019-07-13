@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { PostDataService } from '../post-data.service'
+import { AuthenticationService } from '../authentication.service';
 import { Post } from '../post.model';
 
 @Component({
@@ -15,7 +16,11 @@ export class InputPostComponent implements OnInit {
   public title: string;
   public errorMessage: string;
 
-  constructor(private postDataService: PostDataService, private router: Router) { }
+  constructor(
+    private postDataService: PostDataService,
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) { }
 
 
   ngOnInit() {
@@ -30,6 +35,9 @@ export class InputPostComponent implements OnInit {
 
   onSubmit(): void {
     this.errorMessage = '';
+    if (this.newPost) {
+      this.post.author = this.authenticationService.getCurrentUser().name;
+    }
     if (this.formIsValid()) {
       this.savePost(this.post)
         .then((saved: any) => {
@@ -62,7 +70,7 @@ export class InputPostComponent implements OnInit {
   }
 
   private formIsValid(): boolean {
-    if (this.post.author && this.post.title && this.post.body) {
+    if (this.post.title && this.post.body) {
       return true;
     } else {
       return false;

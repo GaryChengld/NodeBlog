@@ -66,7 +66,7 @@ export class PostDetailsComponent implements OnInit {
 
   isModifyButtonVisible(): boolean {
     return this.authenticationService.isLoggedIn()
-      && this.post.author == this.authenticationService.getCurrentUser()
+      && this.post.author == this.authenticationService.getCurrentUser().name
       && !this.formVisible;
   }
 
