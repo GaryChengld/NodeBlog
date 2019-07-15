@@ -9,6 +9,7 @@ import { User } from '../user';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  public searchText: string = '';
 
   constructor(private authenticationService: AuthenticationService) { }
 
@@ -21,6 +22,13 @@ export class NavBarComponent implements OnInit {
 
   public isLoggedIn(): boolean {
     return this.authenticationService.isLoggedIn();
+  }
+
+  public doSearch(): void {
+    if (this.searchText) {
+      console.log(this.searchText);
+      this.searchText = "";
+    }
   }
 
   public getUsername(): string {
