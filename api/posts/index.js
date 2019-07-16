@@ -10,4 +10,5 @@ router.route('/:id')
     .delete(auth, postsController.remove);
 router.route('/author/:author').get(postsController.findByAuthor);
 router.route('/latest/:limit').get(postsController.latestPosts);
+router.route('/search/:text').get(postsController.searchPosts);
 module.exports = router;

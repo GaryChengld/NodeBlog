@@ -18,6 +18,12 @@ const findByAuthor = (req, res) => {
         .catch(error => onError(error, res));
 };
 
+const searchPosts = (req, res) => {
+    postsService.search(req.params.text)
+        .then(results => res.status(200).json(results))
+        .catch(error => onError(error, res));
+}
+
 const create = (req, res) => {
     console.log(req.payload);
     postsService.create(req.body)
@@ -47,5 +53,5 @@ const onError = (error, res) => {
 };
 
 module.exports = {
-    latestPosts, findById, findByAuthor, create, update, remove
+    latestPosts, findById, findByAuthor, searchPosts, create, update, remove
 };

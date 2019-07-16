@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const Post = mongoose.model('Post');
 
 const latestPosts = (limit) => {
+    console.log(`latest posts, limit:${limit}`);
     return Post.find().sort({ createdOn: "desc" })
-        .limit(parseInt(limit, 5))
-        .select('id title author createdOn tags');;
+        .limit(parseInt(limit))
+        .select('id title author createdOn tags');
 };
 
 const findById = (id) => {
@@ -35,6 +36,16 @@ const remove = (id) => {
     return Post.findByIdAndRemove(id);
 };
 
+const search = (text) => {
+    console.log(`search by text, keyword=${text}`);
+    return Post.find(
+        { $text: { $search: text } },
+        { score: { $meta: "textScore" } }
+    )
+        .sort({ score: { $meta: 'textScore' } })
+        .select('id title author createdOn tags');
+}
+
 module.exports = {
-    latestPosts, findById, findByAuthor, create, update, remove
+    latestPosts, findById, findByAuthor, create, update, remove, search
 };

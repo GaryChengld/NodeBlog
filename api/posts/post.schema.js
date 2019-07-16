@@ -10,10 +10,15 @@ const postSchema = new mongoose.Schema({
     author: { type: String, require: true },
     title: { type: String, require: true },
     body: { type: String, require: true },
-    tags: [String], 
+    tags: [String],
     createdOn: { type: Date, default: Date.now },
     updatedOn: { type: Date, default: Date.now },
     comments: [commentSchema]
 }, { collation: 'Posts' });
+
+postSchema.index({
+    title: 'text',
+    author: 'text'
+});
 
 mongoose.model("Post", postSchema);
