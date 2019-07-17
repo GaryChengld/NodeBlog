@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 
 import { AuthenticationService } from './authentication.service';
+import { LatestPostsComponent } from './latest-posts/latest-posts.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AuthenticationService } from './authentication.service';
     NewPostComponent,
     RegisterComponent,
     LoginComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    LatestPostsComponent
   ],
   imports: [
     BrowserModule,
