@@ -19,5 +19,4 @@ export class LatestPostsComponent implements OnInit {
       .getLatestPosts()
       .then(posts => this.posts = posts);
   }
-
 }

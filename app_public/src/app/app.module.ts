@@ -20,6 +20,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 
 import { AuthenticationService } from './authentication.service';
 import { LatestPostsComponent } from './latest-posts/latest-posts.component';
+import { SearchPostsComponent } from './search-posts/search-posts.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LatestPostsComponent } from './latest-posts/latest-posts.component';
     RegisterComponent,
     LoginComponent,
     PageHeaderComponent,
-    LatestPostsComponent
+    LatestPostsComponent,
+    SearchPostsComponent
   ],
   imports: [
     BrowserModule,

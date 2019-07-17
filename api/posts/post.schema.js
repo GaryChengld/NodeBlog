@@ -18,7 +18,8 @@ const postSchema = new mongoose.Schema({
 
 postSchema.index({
     title: 'text',
-    author: 'text'
+    author: 'text',
+    body: 'text'
 });
 
 mongoose.model("Post", postSchema);

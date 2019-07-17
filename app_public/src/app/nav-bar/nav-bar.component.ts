@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { User } from '../user';
 
@@ -11,7 +12,10 @@ import { User } from '../user';
 export class NavBarComponent implements OnInit {
   public searchText: string = '';
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -26,8 +30,7 @@ export class NavBarComponent implements OnInit {
 
   public doSearch(): void {
     if (this.searchText) {
-      console.log(this.searchText);
-      this.searchText = "";
+      this.router.navigateByUrl(`/search/${this.searchText}`);
     }
   }
 
