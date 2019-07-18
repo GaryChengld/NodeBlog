@@ -63,10 +63,11 @@
       <hr>
       <div class="col-12">
         <span>{{ comment.author }}</span> - <small>{{ comment.createdOn | date }}</small>
+        <button *ngIf="isAddCommentButtonVisible()" (click)="deleteComment(comment)" class="btn btn-primary float-right">Delete</button>
       </div>
       <div class="col-12">
         <p [innerHTML]="comment.comment | htmlLineBreaks"></p>
-      </div>
+      </div>      
     </div>
   </div>
 </div>

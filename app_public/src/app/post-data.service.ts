@@ -72,6 +72,14 @@ export class PostDataService {
       .catch(this.handleError);
   }
 
+  public deleteComment(postId: string, commentId: string) {
+    const url: string = `${this.apiBaseUrl}/comments/${postId}/${commentId}`;
+    return this.http
+      .delete(url, this.authHttpOptions())
+      .toPromise()
+      .catch(this.handleError);
+  }
+
   public login(user: User): Promise<AuthResponse> {
     return this.makeAuthApiCall('users/login', user);
   }

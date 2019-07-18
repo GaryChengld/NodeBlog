@@ -60,6 +60,11 @@ export class PostDetailsComponent implements OnInit {
     }
   }
 
+  deleteComment(comment: any) {
+    this.postDataService.deleteComment(this.post._id, comment._id)
+      .then(() => this.post.comments = this.post.comments.filter(c => c._id != comment._id));
+  }
+
   showForm(): void {
     this.formVisible = true;
   }
