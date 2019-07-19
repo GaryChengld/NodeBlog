@@ -14,7 +14,7 @@
         <div>
           <span *ngFor="let tag of post.tags" class="badge badge-pill badge-success">
             {{tag}}
-          </span>          
+          </span>
         </div>
       </div>
     </div>
@@ -26,7 +26,8 @@
   <div class="row">
     <div class="col-12">
       <div class="comments">
-        <button *ngIf="isAddCommentButtonVisible()" (click)="showForm()" class="btn btn-primary float-right">Add Comment</button>
+        <button *ngIf="isAddCommentButtonVisible()" (click)="showForm()" class="btn btn-primary float-right">Add
+          Comment</button>
         <h5>Comments</h5>
       </div>
     </div>
@@ -63,11 +64,12 @@
       <hr>
       <div class="col-12">
         <span>{{ comment.author }}</span> - <small>{{ comment.createdOn | date }}</small>
-        <button *ngIf="isAddCommentButtonVisible()" (click)="deleteComment(comment)" class="btn btn-primary float-right">Delete</button>
+        <button *ngIf="isCommentDeleteable(comment)" (click)="deleteComment(comment)"
+          class="btn btn-primary float-right">Delete</button>
       </div>
       <div class="col-12">
         <p [innerHTML]="comment.comment | htmlLineBreaks"></p>
-      </div>      
+      </div>
     </div>
   </div>
 </div>
