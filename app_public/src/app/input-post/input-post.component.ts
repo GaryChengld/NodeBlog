@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PostDataService } from '../post-data.service'
 import { AuthenticationService } from '../authentication.service';
 import { Post } from '../post.model';
+import { HistoryService } from '../history.service';
 
 @Component({
   selector: 'app-input-post',
@@ -19,7 +20,8 @@ export class InputPostComponent implements OnInit {
   constructor(
     private postDataService: PostDataService,
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private historyService: HistoryService
   ) { }
 
 
@@ -54,11 +56,8 @@ export class InputPostComponent implements OnInit {
   }
 
   onCancel(): void {
-    if (this.post._id) {
-      this.router.navigate(['/posts', this.post._id]);
-    } else {
-      this.router.navigate(['/']);
-    }
+    console.log(this.historyService.getPreviousUrl());
+    this.router.navigateByUrl(this.historyService.getPreviousUrl());    
   }
 
   private savePost(post: Post): Promise<any> {

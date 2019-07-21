@@ -5,11 +5,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div id="navbarMain" class="navbar-collapse collapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item" *ngIf="isLoggedIn()">
-          <a routerLink="newpost" routerLinkActive="active" class="nav-link">New Post</a>
-        </li>
-      </ul>
       <ul class="navbar-nav ml-auto">
         <form class="form-inline" (ngSubmit)="doSearch()">
           <input class="form-control mr-sm-2" type="text" name="searchText" placeholder="Search" [(ngModel)]="searchText">
@@ -20,9 +15,10 @@
         </li>
         <li class="nav-item dropdown" routerLinkActive="active" *ngIf="isLoggedIn()">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">{{ getUsername() }}</a>
-          <div class="dropdown-menu">
+          <div class="dropdown-menu">            
+            <a class="dropdown-item" routerLink="newpost" href="#">New Post</a>
             <a class="dropdown-item" (click)="doLogout()" href="#">Logout</a>
-          </div>
+          </div>          
         </li>
       </ul>
     </div>

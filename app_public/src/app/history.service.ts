@@ -6,7 +6,7 @@ import { filter } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HistoryService {
-  private readonly excludes: string[] = ['/register', '/login'];
+  private readonly excludes: string[] = ['/register', '/login', '/newpost'];
   private urls: string[] = [];
 
   constructor(private router: Router) {
