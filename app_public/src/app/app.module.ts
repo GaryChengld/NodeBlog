@@ -18,7 +18,6 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 
-import { AuthenticationService } from './authentication.service';
 import { LatestPostsComponent } from './latest-posts/latest-posts.component';
 import { SearchPostsComponent } from './search-posts/search-posts.component';
 
