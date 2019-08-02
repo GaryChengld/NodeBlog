@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HistoryService } from './history.service';
 
 @Component({
   selector: 'app-boot',
@@ -9,9 +8,7 @@ import { HistoryService } from './history.service';
 export class AppComponent implements OnInit {
   title = 'nBlog';
 
-  constructor(
-    private historyService: HistoryService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
